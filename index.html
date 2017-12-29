@@ -369,7 +369,14 @@
 <p>第一篇呢就从简单（？）的说起吧，教大家如何创建自己的hexo的个人博客</p>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>1.Github账号（不解释，程序员必备）<br>2.Git（去官网下载，地址：）<br>3.nodepad++（非必需，但是是很好用检查代码的编辑器，什么都能看including assembly language）<br>4.Node.js（去官网下，地址：）<br>5.Hexo（去官网，3.0版本与2.x版本略有不同，稍后会注明，下载安装时请注意）</p>
 <h2 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h2><h3 id="各种命令输入"><a href="#各种命令输入" class="headerlink" title="各种命令输入"></a>各种命令输入</h3><p>在你像创建用于存放博客数据的本地文件夹下，右键选中git bash shell（或者直接打开git bash用命令一路转过去，命令：$cd 目标文件夹名）<br>在shell中输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure></p>
-<p>这个指令是生成静态页面的指令</p>
+<p>这个指令是生成静态页面的指令<br>接下来安装插件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save <span class="comment">#把hexo推到github上去</span></span><br></pre></td></tr></table></figure></p>
+<p>上面这个是必需装的，下面再提供一些插件可供选择，以后也可以装，不影响博客成型<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-index --save <span class="comment">#索引生成器</span></span><br><span class="line">$ npm install hexo-generator-archive --save <span class="comment">#归档生成器</span></span><br><span class="line">$ npm install hexo-generator-category --save <span class="comment">#分类生成器</span></span><br><span class="line">$ npm install hexo-generator-tag --save <span class="comment">#标签生成器</span></span><br><span class="line">$ npm install hexo-server --save <span class="comment">#本地服务</span></span><br><span class="line">$ npm install hexo-renderer-stylus@0.3.0 --save <span class="comment">#渲染器</span></span><br></pre></td></tr></table></figure></p>
+<p>差不多就这些了，如果需要更多可以给我留言，或者去hexo官网上自行查询</p>
+<h2 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h2><h3 id="配置SSH"><a href="#配置SSH" class="headerlink" title="配置SSH"></a>配置SSH</h3><p>这步坑有点多，是我花时间最多的一步</p>
+<p>首先在git bash shell里运行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"输入你的邮箱“ #生成公钥，下一行会跳出提示</span></span><br><span class="line"><span class="string">Enter file in which to save the key (/c/User/alexm/.ssh/id_rsa) "</span>这里输入你想起的名字”</span><br><span class="line"><span class="comment">#下面的提示不打了，就是让你输两遍一样的密码</span></span><br></pre></td></tr></table></figure></p>
+<p>我知道some of you 报错了，没事，我也报错了。。。。<br>—————————————报错解决—————————–</p>
+<hr>
+<p>去上面那个地址，找到你的公钥文件，用notepad++打开，ctrl+A全选后复制。登陆</p>
 
           
         
