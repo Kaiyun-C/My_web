@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="喧哗上等">
 <meta property="og:description" content="开篇先说两句很久前就有想写个博客的这样一个想法，苦于没有内容，自己也只是整天摸鱼，没有好好啃书写代码，这次以这样一个写博客的形式分享知识，也是督促我自己好好coding啦 第一篇呢就从简单（？）的说起吧，教大家如何创建自己的hexo的个人博客 准备工作1.Github账号（不解释，程序员必备）2.Git（去官网下载，地址：）3.nodepad++（非必需，但是是很好用检查代码的编辑器，什么都能看i">
 <meta property="og:locale" content="zh-hk">
-<meta property="og:updated_time" content="2017-12-29T09:18:25.061Z">
+<meta property="og:updated_time" content="2018-01-03T13:52:38.903Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo创建教学（终极完整不踩坑版）">
 <meta name="twitter:description" content="开篇先说两句很久前就有想写个博客的这样一个想法，苦于没有内容，自己也只是整天摸鱼，没有好好啃书写代码，这次以这样一个写博客的形式分享知识，也是督促我自己好好coding啦 第一篇呢就从简单（？）的说起吧，教大家如何创建自己的hexo的个人博客 准备工作1.Github账号（不解释，程序员必备）2.Git（去官网下载，地址：）3.nodepad++（非必需，但是是很好用检查代码的编辑器，什么都能看i">
@@ -369,11 +369,14 @@
 <p>这个指令是生成静态页面的指令<br>接下来安装插件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save <span class="comment">#把hexo推到github上去</span></span><br></pre></td></tr></table></figure></p>
 <p>上面这个是必需装的，下面再提供一些插件可供选择，以后也可以装，不影响博客成型<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-index --save <span class="comment">#索引生成器</span></span><br><span class="line">$ npm install hexo-generator-archive --save <span class="comment">#归档生成器</span></span><br><span class="line">$ npm install hexo-generator-category --save <span class="comment">#分类生成器</span></span><br><span class="line">$ npm install hexo-generator-tag --save <span class="comment">#标签生成器</span></span><br><span class="line">$ npm install hexo-server --save <span class="comment">#本地服务</span></span><br><span class="line">$ npm install hexo-renderer-stylus@0.3.0 --save <span class="comment">#渲染器</span></span><br></pre></td></tr></table></figure></p>
 <p>差不多就这些了，如果需要更多可以给我留言，或者去hexo官网上自行查询</p>
+<p>###Github 库新建</p>
 <h2 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h2><h3 id="配置SSH"><a href="#配置SSH" class="headerlink" title="配置SSH"></a>配置SSH</h3><p>这步坑有点多，是我花时间最多的一步</p>
 <p>首先在git bash shell里运行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"输入你的邮箱“ #生成公钥，下一行会跳出提示</span></span><br><span class="line"><span class="string">Enter file in which to save the key (/c/User/alexm/.ssh/id_rsa) "</span>这里输入你想起的名字”</span><br><span class="line"><span class="comment">#下面的提示不打了，就是让你输两遍一样的密码</span></span><br></pre></td></tr></table></figure></p>
-<p>我知道some of you 报错了，没事，我也报错了。。。。<br>—————————————报错解决—————————–</p>
-<hr>
-<p>去上面那个地址，找到你的公钥文件，用notepad++打开，ctrl+A全选后复制。登陆</p>
+<h3 id="公钥推送GitHub"><a href="#公钥推送GitHub" class="headerlink" title="公钥推送GitHub"></a>公钥推送GitHub</h3><p>去上面那个地址，找到你的公钥文件（会有两个同名的文件，选中后缀是.pub的那个），用notepad++打开，ctrl+A全选后复制。登陆Github，点击头像 Setting→SSH keys→ new SSH key，title自己随便起，把key复制进去，再点击add key。</p>
+<p>在git bash 中输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
+<p>我知道some of you 报错了，没事，我也报错了。。。。没报错的朋友们跳过下个part</p>
+<h3 id="报错解决"><a href="#报错解决" class="headerlink" title="报错解决"></a>报错解决</h3><p>最常见的错误就是 permission denied (publickey),并且我暂时也只遇到了这个错误，遇到报错，我们老练的程序员当然首先是不要慌，大不了放弃嘛，对吧。<br>输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T -v git@github.com</span><br></pre></td></tr></table></figure></p>
+<p>查看哪里有问题。通常问题都是因为之前给ssh取的名字，与github一直try的东西不一致导致的，找到文件，把名字改为id_rsa即可。</p>
 
       
     </div>
@@ -548,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开篇先说两句"><span class="nav-number">1.</span> <span class="nav-text">开篇先说两句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step1"><span class="nav-number">3.</span> <span class="nav-text">Step1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各种命令输入"><span class="nav-number">3.1.</span> <span class="nav-text">各种命令输入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step2"><span class="nav-number">4.</span> <span class="nav-text">Step2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置SSH"><span class="nav-number">4.1.</span> <span class="nav-text">配置SSH</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开篇先说两句"><span class="nav-number">1.</span> <span class="nav-text">开篇先说两句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step1"><span class="nav-number">3.</span> <span class="nav-text">Step1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各种命令输入"><span class="nav-number">3.1.</span> <span class="nav-text">各种命令输入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step2"><span class="nav-number">4.</span> <span class="nav-text">Step2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置SSH"><span class="nav-number">4.1.</span> <span class="nav-text">配置SSH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公钥推送GitHub"><span class="nav-number">4.2.</span> <span class="nav-text">公钥推送GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#报错解决"><span class="nav-number">4.3.</span> <span class="nav-text">报错解决</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -568,7 +571,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
